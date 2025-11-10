@@ -1,51 +1,49 @@
 const Tour = require("../models/tourModel.js");
 
-// Get /Tours
+// GET /tours
 const getAllTours = (req, res) => {
   const tours = Tour.getAll();
   res.status(200).json(tours);
 };
 
-// Get /Tours/:tourId
+// GET /tours/:tourId
 const getTourById = (req, res) => {
   const tourId = req.params.tourId;
   const tour = Tour.findById(tourId);
   if (tour) {
-    res.status(200).json(tour);
-  } else {
-    res.status(404).json({ message: "Tour not found" });
+    return res.status(200).json(tour);
   }
+  res.status(404).json({ message: "Tour not found" });
 };
-// Post /Tours
+
+// POST /tours
 const createTour = (req, res) => {
   const newTour = Tour.addOne({ ...req.body });
   if (newTour) {
-    res.status(201).json(newTour);// 201 created
-  } else {
-    res.status(400).json({ message: "Invalid tour data" });
+    return res.status(201).json(newTour); // created
   }
+  res.status(400).json({ message: "Invalid tour data" });
 };
 
-// Put /Tours/:tourId
+// PUT /tours/:tourId
 const updateTour = (req, res) => {
   const tourId = req.params.tourId;
   const updatedTour = Tour.updateOneById(tourId, { ...req.body });
   if (updatedTour) {
-    res.status(200).json(updatedTour);
-  } else {
-    res.status(404).json({ message: "Tour not found or invalid data" });
+    return res.status(200).json(updatedTour);
   }
+  res.status(404).json({ message: "Tour not found or invalid data" });
 };
 
-// Delete /Tours/:tourId
+// DELETE /tours/:tourId
 const deleteTour = (req, res) => {
   const tourId = req.params.tourId;
   const isDeleted = Tour.deleteOneById(tourId);
   if (isDeleted) {
-    res.status(200).json({ message: "Tour deleted successfully" });
-  } else {
-    res.status(204).json({ message: "No content found" });
+    // 200 OK with a message (or 204 with no body is also fine)
+    return res.status(200).json({ message: "Tour deleted successfully" });
   }
+  res.status(404).json({ message: "Tour not found" });
 };
 
 module.exports = {

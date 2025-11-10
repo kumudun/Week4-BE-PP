@@ -1,5 +1,7 @@
+// routes/tourRouter.js
 const express = require("express");
 const router = express.Router();
+const auth = require("../middleware/auth.js");
 
 const {
   getAllTours,
@@ -9,20 +11,19 @@ const {
   deleteTour,
 } = require("../controllers/tourController.js");
 
-// ROUTES
-// GET /tours
+// PUBLIC ROUTES
+
 router.get("/", getAllTours);
-
-// POST /tours
-router.post("/", createTour);
-
-// GET /tours/:tourId
 router.get("/:tourId", getTourById);
 
-// PUT /tours/:tourId
+
+router.use(auth);
+
+router.post("/", createTour);
+
+
 router.put("/:tourId", updateTour);
 
-// DELETE /tours/:tourId
 router.delete("/:tourId", deleteTour);
 
 module.exports = router;

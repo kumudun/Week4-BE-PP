@@ -1,10 +1,10 @@
 // middleware/auth.js
 module.exports = (req, res, next) => {
+  console.log("auth query ->", req.query);   // <— watch this in the terminal
   const isAdmin = req.query.admin === "true";
 
   if (!isAdmin) {
     return res.status(403).json({ message: "Access denied: Admins only." });
   }
-
   next();
 };
