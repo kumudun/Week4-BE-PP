@@ -20,7 +20,7 @@ const getTourById = (req, res) => {
 const createTour = (req, res) => {
   const newTour = Tour.addOne({ ...req.body });
   if (newTour) {
-    res.status(201).json(newTour);
+    res.status(201).json(newTour);// 201 created
   } else {
     res.status(400).json({ message: "Invalid tour data" });
   }
@@ -44,7 +44,7 @@ const deleteTour = (req, res) => {
   if (isDeleted) {
     res.status(200).json({ message: "Tour deleted successfully" });
   } else {
-    res.status(404).json({ message: "Tour not found" });
+    res.status(204).json({ message: "No content found" });
   }
 };
 
