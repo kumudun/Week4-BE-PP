@@ -1,12 +1,10 @@
 const User = require("../models/userModel.js");
 
-// Get /Tours
 const getAllUsers = (req, res) => {
   const users = User.getAll();
   res.status(200).json(users);
 };
 
-// Get /Tours/:tourId
 const getUserById = (req, res) => {
   const userId = req.params.userId;
   const user = User.findById(userId);
@@ -16,7 +14,7 @@ const getUserById = (req, res) => {
     res.status(404).json({ message: "User not found" });
   }
 };
-// create /users
+
 const createUser = (req, res) => {
   const newUser = User.addOne({ ...req.body });
   if (newUser) {
@@ -26,7 +24,6 @@ const createUser = (req, res) => {
   }
 };
 
-// Put /Tours/:tourId
 const updateUser = (req, res) => {
   const userId = req.params.userId;
   const updatedUser = User.updateOneById(userId, { ...req.body });
@@ -37,7 +34,6 @@ const updateUser = (req, res) => {
   }
 };
 
-// Delete /Tours/:tourId
 const deleteUser = (req, res) => {
   const userId = req.params.userId;
   const isDeleted = User.deleteOneById(userId);
