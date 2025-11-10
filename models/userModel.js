@@ -10,8 +10,7 @@
   "country": "Finland"
 }*/
 
-
-userArray = [];
+let userArray = [];
 let nextId = 1;
 
 const getAll = () => {
@@ -26,10 +25,9 @@ const addOne = (userData) => {
     phone_number,
     gender,
     date_of_birth,
-    memebership_status,
+    membership_status,
     account_verified,
     country,
-
   } = userData;
   if (
     !name ||
@@ -38,10 +36,9 @@ const addOne = (userData) => {
     !phone_number ||
     !gender ||
     !date_of_birth ||
-    !memebership_status ||
+    !membership_status ||
     account_verified === undefined ||
-    !country  
-
+    !country
   ) {
     return false;
   }

@@ -1,4 +1,4 @@
-/* // The data model for car is as follows
+/* // The data model for Tour is as follows
 {
   "name": "Adventures in Tokyo - 5 Day Tour",
   "info": "Discover the vibrant mix of tradition and modernity in Tokyo. Visit ancient temples like Senso-ji, explore futuristic districts such as Shibuya and Akihabara, and enjoy authentic Japanese cuisine from sushi to ramen. Guided tours will take you through bustling markets, serene gardens, and hidden alleyways filled with local charm.",
@@ -62,20 +62,20 @@ const updateOneById = (id, updatedData) => {
   }
   return false;
 };
-function deleteCarById(id) {
+function deletetourById(id) {
   const numericId = Number(id);
-  const car = findById(numericId);
+  const tour = findById(numericId);
 
-  if (!car) {
-    return "Car not found";
+  if (!tour) {
+    return "tour not found";
   }
 
-  const originalLength = carArray.length;
-  carArray = carArray.filter((c) => c.id !== numericId);
+  const originalLength = tourArray.length;
+  tourArray = tourArray.filter((c) => c.id !== numericId);
 
-  return carArray.length < originalLength
-    ? "Car deleted successfully"
-    : "No car was deleted";
+  return tourArray.length < originalLength
+    ? "tour deleted successfully"
+    : "No tour was deleted";
 }
 const deleteOneById = (id) => {
   const tour = findById(id);

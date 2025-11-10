@@ -16,11 +16,11 @@ const getUserById = (req, res) => {
     res.status(404).json({ message: "User not found" });
   }
 };
-// Post /Tours
+// create /users
 const createUser = (req, res) => {
   const newUser = User.addOne({ ...req.body });
   if (newUser) {
-    res.status(201).json(newUser);// 201 created
+    res.status(201).json(newUser);
   } else {
     res.status(400).json({ message: "Invalid user data" });
   }
